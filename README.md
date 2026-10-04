@@ -45,3 +45,28 @@ Every copied file is unmodified and keeps its SPDX header; see [NOTICE](NOTICE).
 MIT for the generated glue. All copied components are permissively licensed.
 
 Not audited. Review before deploying with real value.
+
+Composed by [blockchainlab-compose](https://github.com/Blockchains/blockchainlab-compose), the engine behind [blockchainlab.com/forge](https://blockchainlab.com/forge). Contracts only, no hosted site.
+
+## Configuration
+
+`script/Deploy.s.sol` reads (deployer = broadcaster = admin):
+
+| Variable | Required | Default | Purpose |
+|---|---|---|---|
+| `PRICE_FEED` | yes | — | Chainlink ETH/USD feed (Sepolia: `0x694AA1769357215DE4FAC081bf1f309aDC325306`) |
+| `MAX_SUPPLY` | no | 1000 | Max tokens |
+| `BASE_URI` | no | `ipfs://REPLACE_ME/` | Token metadata base URI |
+| `MINT_PRICE_USD` | no | 25e18 (US$25) | Mint price in USD, 18 decimals |
+| `MAX_PRICE_AGE` | no | 1 day | Oracle staleness limit (seconds) |
+| `ROYALTY_BPS` | no | 500 (5%) | ERC-2981 royalty |
+| `MAINNET_RPC_URL` | no | — | Enables the live ETH/USD fork test |
+
+The **Deploy (Sepolia)** workflow needs `DEPLOYER_PRIVATE_KEY` and `SEPOLIA_RPC_URL` repository secrets and stops with a clear error without them.
+
+## Contributing
+
+Issues and pull requests are welcome. Please read the [contributing guide](https://github.com/Blockchains/.github/blob/main/CONTRIBUTING.md), [code of conduct](https://github.com/Blockchains/.github/blob/main/CODE_OF_CONDUCT.md) and [security policy](https://github.com/Blockchains/.github/blob/main/SECURITY.md) first.
+
+---
+Built by Blockchain Lab — [blockchainlab.com](https://blockchainlab.com/?utm_source=github&utm_medium=readme&utm_campaign=forge-usd-priced-membership-nft)
