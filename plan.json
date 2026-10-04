@@ -1,0 +1,372 @@
+{
+ "idea": "An NFT membership collection with ERC-2981 royalties, role-based minting, a pause switch, and a paid mint priced in USD using a Chainlink ETH/USD price feed",
+ "vm": "EVM",
+ "capabilities": [
+  {
+   "id": "price-oracle",
+   "source": "index-taxonomy",
+   "score": 2.3,
+   "why": [
+    "price",
+    "price feed"
+   ]
+  },
+  {
+   "id": "nft",
+   "source": "index-taxonomy",
+   "score": 1.764,
+   "why": [
+    "nft",
+    "semantic z=1.66"
+   ]
+  },
+  {
+   "id": "royalties",
+   "source": "index-taxonomy",
+   "score": 1.762,
+   "why": [
+    "royalties",
+    "semantic z=1.65"
+   ]
+  },
+  {
+   "id": "pausable",
+   "source": "keyword-rule",
+   "why": [
+    "pause"
+   ]
+  },
+  {
+   "id": "access-control",
+   "source": "keyword-rule",
+   "why": [
+    "role-"
+   ]
+  }
+ ],
+ "archetype": "nft",
+ "selected": [
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/token/ERC721/ERC721.sol",
+   "name": "ERC721",
+   "kind": "abstract contract",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.24",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "nft",
+   "role": "planner-selected",
+   "in_index": true
+  },
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/token/ERC721/IERC721.sol",
+   "name": "IERC721",
+   "kind": "interface",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": ">=0.6.2",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "nft",
+   "role": "indexed",
+   "in_index": true
+  },
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/token/common/ERC2981.sol",
+   "name": "ERC2981",
+   "kind": "abstract contract",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.20",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "royalties",
+   "role": "planner-selected",
+   "in_index": true
+  },
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/token/ERC721/extensions/ERC721Pausable.sol",
+   "name": "ERC721Pausable",
+   "kind": "abstract contract",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.24",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "nft",
+   "role": "indexed",
+   "in_index": true
+  },
+  {
+   "slug": "chainlink-evm",
+   "path": "contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
+   "name": "AggregatorV3Interface",
+   "kind": "interface",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.0",
+   "fork": "Blockchains/chainlink-evm",
+   "upstream": "smartcontractkit/chainlink-evm",
+   "commit": "d1ee27b0b5875adb8eca1e0da05926f7eb1f6e1f",
+   "capability": "price-oracle",
+   "role": "planner-selected",
+   "in_index": true
+  },
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/access/AccessControl.sol",
+   "name": "AccessControl",
+   "kind": "abstract contract",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.20",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "access-control",
+   "role": "indexed",
+   "in_index": true
+  },
+  {
+   "slug": "openzeppelin-contracts",
+   "path": "contracts/access/IAccessControl.sol",
+   "name": "IAccessControl",
+   "kind": "interface",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": ">=0.8.4",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "capability": "access-control",
+   "role": "indexed",
+   "in_index": true
+  },
+  {
+   "slug": "forge-std",
+   "path": "src/Test.sol",
+   "name": "Test",
+   "kind": "abstract contract",
+   "license": "MIT OR Apache-2.0",
+   "license_class": "permissive",
+   "pragma": ">=0.8.13 <0.9.0",
+   "fork": "Blockchains/forge-std",
+   "upstream": "foundry-rs/forge-std",
+   "commit": "c6fa5d82a3a287c4ff23f26c8f7e2958aafd32d9",
+   "capability": "dev-framework",
+   "role": "indexed",
+   "in_index": true
+  },
+  {
+   "slug": "forge-std",
+   "path": "src/Script.sol",
+   "name": "Script",
+   "kind": "abstract contract",
+   "license": "MIT OR Apache-2.0",
+   "license_class": "permissive",
+   "pragma": ">=0.8.13 <0.9.0",
+   "fork": "Blockchains/forge-std",
+   "upstream": "foundry-rs/forge-std",
+   "commit": "c6fa5d82a3a287c4ff23f26c8f7e2958aafd32d9",
+   "capability": "dev-framework",
+   "role": "indexed",
+   "in_index": true
+  }
+ ],
+ "planner_selected": [
+  {
+   "id": "chainlink-evm:contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol:AggregatorV3Interface",
+   "slug": "chainlink-evm",
+   "name": "AggregatorV3Interface",
+   "path": "contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
+   "kind": "interface",
+   "lang": "Solidity",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.0",
+   "score": 2.594,
+   "raw_url": "https://raw.githubusercontent.com/Blockchains/chainlink-evm/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
+   "commit": "d1ee27b0b5875adb8eca1e0da05926f7eb1f6e1f",
+   "fork": "Blockchains/chainlink-evm",
+   "upstream": "smartcontractkit/chainlink-evm",
+   "capability": "price-oracle",
+   "role": "primary"
+  },
+  {
+   "id": "openzeppelin-contracts:contracts/token/ERC721/ERC721.sol:ERC721",
+   "slug": "openzeppelin-contracts",
+   "name": "ERC721",
+   "path": "contracts/token/ERC721/ERC721.sol",
+   "kind": "abstract contract",
+   "lang": "Solidity",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.24",
+   "score": 3.087,
+   "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/ERC721/ERC721.sol",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "capability": "nft",
+   "role": "primary"
+  },
+  {
+   "id": "openzeppelin-contracts:contracts/token/ERC721/extensions/ERC721URIStorage.sol:ERC721URIStorage",
+   "slug": "openzeppelin-contracts",
+   "name": "ERC721URIStorage",
+   "path": "contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+   "kind": "abstract contract",
+   "lang": "Solidity",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.24",
+   "score": null,
+   "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "capability": "nft",
+   "role": "companion"
+  },
+  {
+   "id": "openzeppelin-contracts:contracts/token/common/ERC2981.sol:ERC2981",
+   "slug": "openzeppelin-contracts",
+   "name": "ERC2981",
+   "path": "contracts/token/common/ERC2981.sol",
+   "kind": "abstract contract",
+   "lang": "Solidity",
+   "license": "MIT",
+   "license_class": "permissive",
+   "pragma": "^0.8.20",
+   "score": 3.087,
+   "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/common/ERC2981.sol",
+   "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+   "fork": "Blockchains/openzeppelin-contracts",
+   "upstream": "OpenZeppelin/openzeppelin-contracts",
+   "capability": "royalties",
+   "role": "primary"
+  }
+ ],
+ "alternatives": {
+  "price-oracle": [
+   {
+    "id": "chainlink-evm:contracts/src/v0.6/data-feeds/interfaces/AggregatorV3Interface.sol:AggregatorV3Interface",
+    "slug": "chainlink-evm",
+    "name": "AggregatorV3Interface",
+    "path": "contracts/src/v0.6/data-feeds/interfaces/AggregatorV3Interface.sol",
+    "kind": "interface",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.6.0",
+    "score": 1.394,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/chainlink-evm/develop/contracts/src/v0.6/data-feeds/interfaces/AggregatorV3Interface.sol",
+    "commit": "d1ee27b0b5875adb8eca1e0da05926f7eb1f6e1f",
+    "fork": "Blockchains/chainlink-evm",
+    "upstream": "smartcontractkit/chainlink-evm"
+   },
+   {
+    "id": "chainlink-evm:contracts/src/v0.8/vrf/testhelpers/VRFMockETHLINKAggregator.sol:VRFMockETHLINKAggregator",
+    "slug": "chainlink-evm",
+    "name": "VRFMockETHLINKAggregator",
+    "path": "contracts/src/v0.8/vrf/testhelpers/VRFMockETHLINKAggregator.sol",
+    "kind": "contract",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.8.0",
+    "score": 1.394,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/chainlink-evm/develop/contracts/src/v0.8/vrf/testhelpers/VRFMockETHLINKAggregator.sol",
+    "commit": "d1ee27b0b5875adb8eca1e0da05926f7eb1f6e1f",
+    "fork": "Blockchains/chainlink-evm",
+    "upstream": "smartcontractkit/chainlink-evm"
+   }
+  ],
+  "nft": [
+   {
+    "id": "openzeppelin-contracts:contracts/token/ERC721/extensions/ERC721URIStorage.sol:ERC721URIStorage",
+    "slug": "openzeppelin-contracts",
+    "name": "ERC721URIStorage",
+    "path": "contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+    "kind": "abstract contract",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.8.24",
+    "score": 3.087,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+    "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+    "fork": "Blockchains/openzeppelin-contracts",
+    "upstream": "OpenZeppelin/openzeppelin-contracts"
+   },
+   {
+    "id": "openzeppelin-contracts:contracts/token/ERC721/extensions/ERC721Burnable.sol:ERC721Burnable",
+    "slug": "openzeppelin-contracts",
+    "name": "ERC721Burnable",
+    "path": "contracts/token/ERC721/extensions/ERC721Burnable.sol",
+    "kind": "abstract contract",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.8.24",
+    "score": 1.887,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/ERC721/extensions/ERC721Burnable.sol",
+    "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+    "fork": "Blockchains/openzeppelin-contracts",
+    "upstream": "OpenZeppelin/openzeppelin-contracts"
+   }
+  ],
+  "royalties": [
+   {
+    "id": "solady:src/tokens/ERC2981.sol:ERC2981",
+    "slug": "solady",
+    "name": "ERC2981",
+    "path": "src/tokens/ERC2981.sol",
+    "kind": "abstract contract",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.8.4",
+    "score": 1.706,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/solady/main/src/tokens/ERC2981.sol",
+    "commit": "2afba69bf67b78dd4abeadcc696052b3a6f71499",
+    "fork": "Blockchains/solady",
+    "upstream": "Vectorized/solady"
+   },
+   {
+    "id": "openzeppelin-contracts:contracts/token/ERC721/extensions/ERC721Royalty.sol:ERC721Royalty",
+    "slug": "openzeppelin-contracts",
+    "name": "ERC721Royalty",
+    "path": "contracts/token/ERC721/extensions/ERC721Royalty.sol",
+    "kind": "abstract contract",
+    "lang": "Solidity",
+    "license": "MIT",
+    "license_class": "permissive",
+    "pragma": "^0.8.24",
+    "score": 1.687,
+    "raw_url": "https://raw.githubusercontent.com/Blockchains/openzeppelin-contracts/master/contracts/token/ERC721/extensions/ERC721Royalty.sol",
+    "commit": "40a51f7e78852e48d0b128d4ee3d620cbc7d35d8",
+    "fork": "Blockchains/openzeppelin-contracts",
+    "upstream": "OpenZeppelin/openzeppelin-contracts"
+   }
+  ]
+ },
+ "license": {
+  "project_license": "MIT",
+  "warning": null
+ },
+ "pins": {
+  "openzeppelin-contracts": "v5.7.0",
+  "forge-std": "v1.17.0"
+ },
+ "index_generated_at": "2026-10-04T10:09:18Z"
+}

@@ -1,0 +1,52 @@
+NOTICE
+
+This project was composed by Blockchain Lab Forge (https://blockchainlab.com/forge) from the following open-source projects.
+Files are copied unmodified, with their original SPDX headers, under lib/<project>/.
+
+- smartcontractkit/chainlink-evm (via https://github.com/Blockchains/chainlink-evm @ d1ee27b0b5875adb8eca1e0da05926f7eb1f6e1f) - licence: MIT (portions other licences; see LICENSE)
+    contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol
+
+- foundry-rs/forge-std (via https://github.com/Blockchains/forge-std @ f3dae6e6ee381f25eb6a246f7da9b85c91a68219 (tag v1.17.0)) - licence: Apache-2.0 OR MIT
+    src/Base.sol
+    src/Script.sol
+    src/StdAssertions.sol
+    src/StdChains.sol
+    src/StdCheats.sol
+    src/StdConstants.sol
+    src/StdError.sol
+    src/StdInvariant.sol
+    src/StdJson.sol
+    src/StdMath.sol
+    src/StdStorage.sol
+    src/StdStyle.sol
+    src/StdToml.sol
+    src/StdUtils.sol
+    src/Test.sol
+    src/Vm.sol
+    src/console.sol
+    src/console2.sol
+    src/interfaces/IMulticall3.sol
+    src/safeconsole.sol
+
+- OpenZeppelin/openzeppelin-contracts (via https://github.com/Blockchains/openzeppelin-contracts @ cab19933c33c2ad1d4c7a84864a3601dddfd16f3 (tag v5.7.0)) - licence: MIT
+    contracts/access/AccessControl.sol
+    contracts/access/IAccessControl.sol
+    contracts/interfaces/IERC2981.sol
+    contracts/interfaces/draft-IERC6093.sol
+    contracts/token/ERC721/ERC721.sol
+    contracts/token/ERC721/IERC721.sol
+    contracts/token/ERC721/IERC721Receiver.sol
+    contracts/token/ERC721/extensions/ERC721Pausable.sol
+    contracts/token/ERC721/extensions/IERC721Metadata.sol
+    contracts/token/ERC721/utils/ERC721Utils.sol
+    contracts/token/common/ERC2981.sol
+    contracts/utils/Bytes.sol
+    contracts/utils/Context.sol
+    contracts/utils/Panic.sol
+    contracts/utils/Pausable.sol
+    contracts/utils/Strings.sol
+    contracts/utils/introspection/ERC165.sol
+    contracts/utils/introspection/IERC165.sol
+    contracts/utils/math/Math.sol
+    contracts/utils/math/SafeCast.sol
+    contracts/utils/math/SignedMath.sol

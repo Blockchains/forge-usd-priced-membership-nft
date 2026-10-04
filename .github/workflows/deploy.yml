@@ -1,0 +1,26 @@
+name: Deploy (Sepolia)
+on:
+  workflow_dispatch:
+    inputs:
+      price_feed:
+        description: "Chainlink feed address (only used by NFT archetype; Sepolia ETH/USD default)"
+        default: "0x694AA1769357215DE4FAC081bf1f309aDC325306"
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+      - name: Require secrets
+        env:
+          K: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          R: ${{ secrets.SEPOLIA_RPC_URL }}
+        run: |
+          if [ -z "$K" ] || [ -z "$R" ]; then echo "::error::Add DEPLOYER_PRIVATE_KEY and SEPOLIA_RPC_URL repository secrets to deploy."; exit 1; fi
+      - run: forge script script/Deploy.s.sol --rpc-url "$SEPOLIA_RPC_URL" --private-key "$DEPLOYER_PRIVATE_KEY" --broadcast
+        env:
+          DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          SEPOLIA_RPC_URL: ${{ secrets.SEPOLIA_RPC_URL }}
+          PRICE_FEED: ${{ inputs.price_feed }}
