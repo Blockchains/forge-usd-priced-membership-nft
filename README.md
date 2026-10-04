@@ -41,6 +41,56 @@ Or run the **Deploy (Sepolia)** workflow after adding `DEPLOYER_PRIVATE_KEY` and
 
 Every copied file is unmodified and keeps its SPDX header; see [NOTICE](NOTICE). Machine-readable: [`plan.json`](plan.json), [`component-map.json`](component-map.json).
 
+<!-- blocks:start -->
+## Use as a building block
+
+> **For AI agents and builders:** read [`AGENTS.md`](AGENTS.md) (setup, commands, structure, rules), [`llms.txt`](llms.txt) (doc map) and the machine-readable [`blocks.json`](blocks.json) ([schema](https://github.com/Blockchains/.github/blob/main/docs/BLOCKS-SCHEMA.md)). How all Blockchains blocks fit together: **[Build with Blocks](https://github.com/Blockchains/.github/blob/main/docs/BUILD-WITH-BLOCKS.md)** · org catalogue: [https://blockchains.github.io/blocks.json](https://blockchains.github.io/blocks.json).
+
+**What it exports**
+
+| Export | Type | Install / access |
+|---|---|---|
+| `UsdPricedMembership` | solidity | `forge install Blockchains/forge-usd-priced-membership-nft` |
+| `script/Deploy.s.sol` | file | `forge script script/Deploy.s.sol --rpc-url $SEPOLIA_RPC_URL --account <keystore> --broadcast` |
+| `component-map.json, plan.json` | file | `provenance: capability → component → pinned fork commit` |
+
+**Minimal example** (compiled and passed `forge test` on 2026-10-04 in a fresh Foundry project)
+
+```solidity
+// forge install Blockchains/forge-usd-priced-membership-nft Blockchains/openzeppelin-contracts@v5.7.0
+// remappings.txt (lib/ in each forge-* repo holds only the files it needs, so map OZ to the full fork at the same commit):
+//   @openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+//   @chainlink/contracts/src/=lib/forge-usd-priced-membership-nft/lib/chainlink-evm/contracts/src/
+//   membership/=lib/forge-usd-priced-membership-nft/src/
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+
+contract MembersOnly {                       // token gate on top of UsdPricedMembership
+    IERC721 public immutable pass;
+    mapping(address => string) public notes;
+    error NotMember(address who);
+    constructor(IERC721 pass_) { pass = pass_; }
+    modifier onlyMembers() { if (pass.balanceOf(msg.sender) == 0) revert NotMember(msg.sender); _; }
+    function post(string calldata note) external onlyMembers { notes[msg.sender] = note; }
+}
+// test: deploy UsdPricedMembership(admin, 100, "ipfs://base/", feed, 25e18, 1 hours, admin, 500),
+// mint with value = nft.mintPriceWei(), then gate.post("gm") succeeds; before minting it reverts NotMember.
+```
+
+**Inputs → outputs**
+
+- In: `constructor args` (Solidity) UsdPricedMembership(admin, maxSupply, baseURI, feed, mintPriceUsd (1e18 = $1), maxPriceAge, royaltyReceiver, royaltyBps)
+- Out: `deployed contracts` (EVM); `events/errors` (ABI) see src/
+
+**Composes with**
+
+- [Blockchains/blockchainlab-compose](https://github.com/Blockchains/blockchainlab-compose): the composer that generated this repo
+- [Blockchains/blockchainlab-sdk](https://github.com/Blockchains/blockchainlab-sdk): token-gated dApp data layer (Build with Blocks recipe 1)
+- [Blockchains/forge-dao-governance-token](https://github.com/Blockchains/forge-dao-governance-token): add governance
+- [Blockchains/blockchainlab-starters](https://github.com/Blockchains/blockchainlab-starters): chainlink-price-feed starter explains the oracle pattern
+
+**Versioning & stability:** `reference`. Reference output of an automated composer; copied components are pinned to fork release tags (see NOTICE / component-map.json). Not audited. Treat as a starting point and review before deploying with value.
+<!-- blocks:end -->
+
 ## Licence
 MIT for the generated glue. All copied components are permissively licensed.
 

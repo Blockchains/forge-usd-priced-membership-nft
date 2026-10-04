@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Blockchains/.github/main/docs/blocks.schema.json",
+  "schema_version": "1.0",
+  "name": "forge-usd-priced-membership-nft",
+  "repo": "Blockchains/forge-usd-priced-membership-nft",
+  "summary": "Composed membership NFT: ERC-721 with max supply, ERC-2981 royalties, pause switch, MINTER/PAUSER roles and a paid mint priced in USD through a Chainlink ETH/USD feed with staleness checks and refunds (UsdPricedMembership). Good base for token-gated apps.",
+  "kind": [
+    "contracts"
+  ],
+  "stability": "reference",
+  "license": "MIT",
+  "entrypoints": [
+    {
+      "type": "solidity",
+      "name": "UsdPricedMembership",
+      "ref": "src/UsdPricedMembership.sol",
+      "install": "forge install Blockchains/forge-usd-priced-membership-nft"
+    },
+    {
+      "type": "file",
+      "name": "script/Deploy.s.sol",
+      "ref": "script/Deploy.s.sol",
+      "usage": "forge script script/Deploy.s.sol --rpc-url $SEPOLIA_RPC_URL --account <keystore> --broadcast"
+    },
+    {
+      "type": "file",
+      "name": "component-map.json, plan.json",
+      "ref": "component-map.json",
+      "usage": "provenance: capability → component → pinned fork commit"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "constructor args",
+      "type": "Solidity",
+      "description": "UsdPricedMembership(admin, maxSupply, baseURI, feed, mintPriceUsd (1e18 = $1), maxPriceAge, royaltyReceiver, royaltyBps)"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "deployed contracts",
+      "type": "EVM"
+    },
+    {
+      "name": "events/errors",
+      "type": "ABI",
+      "description": "see src/"
+    }
+  ],
+  "deps": [
+    "foundry (solc 0.8.30)"
+  ],
+  "compatible_with": [
+    {
+      "repo": "Blockchains/blockchainlab-compose",
+      "how": "the composer that generated this repo"
+    },
+    {
+      "repo": "Blockchains/blockchainlab-sdk",
+      "how": "token-gated dApp data layer (Build with Blocks recipe 1)"
+    },
+    {
+      "repo": "Blockchains/forge-dao-governance-token",
+      "how": "add governance"
+    },
+    {
+      "repo": "Blockchains/blockchainlab-starters",
+      "how": "chainlink-price-feed starter explains the oracle pattern"
+    }
+  ],
+  "tests": {
+    "command": "forge test -vv",
+    "ci": ".github/workflows/ci.yml",
+    "network": true
+  },
+  "env": [
+    {
+      "name": "MAINNET_RPC_URL",
+      "required": false,
+      "purpose": "enables live-chain fork tests"
+    },
+    {
+      "name": "SEPOLIA_RPC_URL",
+      "required": false,
+      "purpose": "deploy target"
+    },
+    {
+      "name": "DEPLOYER_PRIVATE_KEY",
+      "required": false,
+      "purpose": "repo secret for the Deploy workflow only; never in files"
+    }
+  ],
+  "docs": {
+    "readme": "README.md",
+    "agents": "AGENTS.md",
+    "llms": "llms.txt"
+  }
+}
